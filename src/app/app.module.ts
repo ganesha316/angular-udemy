@@ -18,6 +18,11 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { toketGetter } from './helpers/token-getter';
+
+/* export function jwtTokenGetter() {
+  return localStorage.getItem("token");
+} */
 
 @NgModule({
   declarations: [
@@ -42,10 +47,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     ]),
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem("token");
-        },
-        // allowedDomains: ["example.com"],
+        tokenGetter: toketGetter,
       }
     }),
   ],
